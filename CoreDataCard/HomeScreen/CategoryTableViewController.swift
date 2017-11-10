@@ -121,13 +121,13 @@ extension CategoryTableViewController {
             return 0
         }
     }
-
+    //customize the swipe for tableview cell
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
             //self.isEditing = false
 
-            print("more button tapped")
+            print("edit button tapped")
         }
 
         edit.backgroundColor = UIColor.blue
@@ -137,7 +137,7 @@ extension CategoryTableViewController {
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
             Category.Delete(CategoryName: currentcell.label.text!,context: context)
             tableView.reloadData()
-            print("favorite button tapped")
+            print("delete button tapped")
         }
         delete.backgroundColor = UIColor.red
 
