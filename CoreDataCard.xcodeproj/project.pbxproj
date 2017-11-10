@@ -8,22 +8,30 @@
 
 /* Begin PBXBuildFile section */
 		11A8E0CC1FB56FA1008CAE56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0CB1FB56FA1008CAE56 /* AppDelegate.swift */; };
-		11A8E0CE1FB56FA1008CAE56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0CD1FB56FA1008CAE56 /* ViewController.swift */; };
 		11A8E0D11FB56FA1008CAE56 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A8E0CF1FB56FA1008CAE56 /* Main.storyboard */; };
 		11A8E0D41FB56FA1008CAE56 /* CoreDataCard.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0D21FB56FA1008CAE56 /* CoreDataCard.xcdatamodeld */; };
 		11A8E0D61FB56FA1008CAE56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11A8E0D51FB56FA1008CAE56 /* Assets.xcassets */; };
 		11A8E0D91FB56FA1008CAE56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11A8E0D71FB56FA1008CAE56 /* LaunchScreen.storyboard */; };
+		11A8E0E31FB5716D008CAE56 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0E21FB5716D008CAE56 /* Category.swift */; };
+		11A8E0E51FB57184008CAE56 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0E41FB57184008CAE56 /* Card.swift */; };
+		11A8E0E71FB571B8008CAE56 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0E61FB571B8008CAE56 /* CategoryTableViewController.swift */; };
+		11A8E0E91FB571DB008CAE56 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0E81FB571DB008CAE56 /* CategoryTableViewCell.swift */; };
+		11A8E0EB1FB57672008CAE56 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0EA1FB57672008CAE56 /* AddViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		11A8E0C81FB56FA1008CAE56 /* CoreDataCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		11A8E0CB1FB56FA1008CAE56 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		11A8E0CD1FB56FA1008CAE56 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		11A8E0D01FB56FA1008CAE56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		11A8E0D31FB56FA1008CAE56 /* CoreDataCard.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataCard.xcdatamodel; sourceTree = "<group>"; };
 		11A8E0D51FB56FA1008CAE56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		11A8E0D81FB56FA1008CAE56 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11A8E0DA1FB56FA1008CAE56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		11A8E0E21FB5716D008CAE56 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		11A8E0E41FB57184008CAE56 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		11A8E0E61FB571B8008CAE56 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		11A8E0E81FB571DB008CAE56 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
+		11A8E0EA1FB57672008CAE56 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +64,35 @@
 		11A8E0CA1FB56FA1008CAE56 /* CoreDataCard */ = {
 			isa = PBXGroup;
 			children = (
+				11A8E0E11FB5706E008CAE56 /* models */,
+				11A8E0E01FB57053008CAE56 /* HomeScreen */,
 				11A8E0CB1FB56FA1008CAE56 /* AppDelegate.swift */,
-				11A8E0CD1FB56FA1008CAE56 /* ViewController.swift */,
 				11A8E0CF1FB56FA1008CAE56 /* Main.storyboard */,
 				11A8E0D51FB56FA1008CAE56 /* Assets.xcassets */,
 				11A8E0D71FB56FA1008CAE56 /* LaunchScreen.storyboard */,
 				11A8E0DA1FB56FA1008CAE56 /* Info.plist */,
 				11A8E0D21FB56FA1008CAE56 /* CoreDataCard.xcdatamodeld */,
+				11A8E0EA1FB57672008CAE56 /* AddViewController.swift */,
 			);
 			path = CoreDataCard;
+			sourceTree = "<group>";
+		};
+		11A8E0E01FB57053008CAE56 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				11A8E0E61FB571B8008CAE56 /* CategoryTableViewController.swift */,
+				11A8E0E81FB571DB008CAE56 /* CategoryTableViewCell.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		11A8E0E11FB5706E008CAE56 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				11A8E0E21FB5716D008CAE56 /* Category.swift */,
+				11A8E0E41FB57184008CAE56 /* Card.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,9 +167,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11A8E0CE1FB56FA1008CAE56 /* ViewController.swift in Sources */,
 				11A8E0D41FB56FA1008CAE56 /* CoreDataCard.xcdatamodeld in Sources */,
 				11A8E0CC1FB56FA1008CAE56 /* AppDelegate.swift in Sources */,
+				11A8E0EB1FB57672008CAE56 /* AddViewController.swift in Sources */,
+				11A8E0E71FB571B8008CAE56 /* CategoryTableViewController.swift in Sources */,
+				11A8E0E31FB5716D008CAE56 /* Category.swift in Sources */,
+				11A8E0E51FB57184008CAE56 /* Card.swift in Sources */,
+				11A8E0E91FB571DB008CAE56 /* CategoryTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,11 +313,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E878DKBM82;
 				INFOPLIST_FILE = CoreDataCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.CoreDataCard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -296,11 +329,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = E878DKBM82;
 				INFOPLIST_FILE = CoreDataCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-.CoreDataCard";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
