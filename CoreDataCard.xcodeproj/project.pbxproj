@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		117991FA1FBEBB820056E7DA /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117991F91FBEBB820056E7DA /* AddCardViewController.swift */; };
+		117991FC1FBEBBA40056E7DA /* ShowCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 117991FB1FBEBBA40056E7DA /* ShowCardViewController.swift */; };
 		11A734931FB63060005CCB4F /* CardTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A734921FB63060005CCB4F /* CardTableViewController.swift */; };
 		11A734951FB63080005CCB4F /* CardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A734941FB63080005CCB4F /* CardTableViewCell.swift */; };
 		11A8E0CC1FB56FA1008CAE56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11A8E0CB1FB56FA1008CAE56 /* AppDelegate.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		117991F91FBEBB820056E7DA /* AddCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		117991FB1FBEBBA40056E7DA /* ShowCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowCardViewController.swift; sourceTree = "<group>"; };
 		11A734921FB63060005CCB4F /* CardTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewController.swift; sourceTree = "<group>"; };
 		11A734941FB63080005CCB4F /* CardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTableViewCell.swift; sourceTree = "<group>"; };
 		11A8E0C81FB56FA1008CAE56 /* CoreDataCard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataCard.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +91,8 @@
 				11A8E0DA1FB56FA1008CAE56 /* Info.plist */,
 				11A8E0D21FB56FA1008CAE56 /* CoreDataCard.xcdatamodeld */,
 				11A8E0EA1FB57672008CAE56 /* AddViewController.swift */,
+				117991F91FBEBB820056E7DA /* AddCardViewController.swift */,
+				117991FB1FBEBBA40056E7DA /* ShowCardViewController.swift */,
 			);
 			path = CoreDataCard;
 			sourceTree = "<group>";
@@ -185,6 +191,8 @@
 				11A734931FB63060005CCB4F /* CardTableViewController.swift in Sources */,
 				11A8E0CC1FB56FA1008CAE56 /* AppDelegate.swift in Sources */,
 				11A8E0EB1FB57672008CAE56 /* AddViewController.swift in Sources */,
+				117991FA1FBEBB820056E7DA /* AddCardViewController.swift in Sources */,
+				117991FC1FBEBBA40056E7DA /* ShowCardViewController.swift in Sources */,
 				11A8E0E71FB571B8008CAE56 /* CategoryTableViewController.swift in Sources */,
 				11A8E0E31FB5716D008CAE56 /* Category.swift in Sources */,
 				11A8E0E51FB57184008CAE56 /* Card.swift in Sources */,
@@ -331,10 +339,10 @@
 				INFOPLIST_FILE = CoreDataCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-.CoreDataCard";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.bcit.comp4977.CoreDataCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -347,10 +355,10 @@
 				INFOPLIST_FILE = CoreDataCard/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "-.CoreDataCard";
+				PRODUCT_BUNDLE_IDENTIFIER = ca.bcit.comp4977.CoreDataCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

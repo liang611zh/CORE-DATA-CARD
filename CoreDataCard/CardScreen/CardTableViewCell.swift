@@ -10,6 +10,7 @@ import UIKit
 
 class CardTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var cardlable: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

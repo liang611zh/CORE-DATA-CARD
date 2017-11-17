@@ -7,9 +7,11 @@
 //
 
 import UIKit
-
-class CardTableViewController: UITableViewController {
-
+import CoreData
+class CardTableViewController: UITableViewController, NSFetchedResultsControllerDelegate{
+    var context : NSManagedObjectContext! = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    var fetchedResultsController: NSFetchedResultsController<Card>!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,6 +20,30 @@ class CardTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        //create a request
+        let request: NSFetchRequest<Card> = Card.fetchRequest()
+        
+        request.sortDescriptors = [NSSortDescriptor(
+            key: "keyword",
+            ascending: true
+            )]
+        
+        //set up the fetchedResultsController
+        fetchedResultsController = NSFetchedResultsController<Card>(
+            fetchRequest: request,
+            managedObjectContext: context,
+            sectionNameKeyPath: nil,
+            cacheName: nil
+        )
+        
+        //set delegate
+        fetchedResultsController.delegate = self
+        do{
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error)
+        }
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,12 +55,16 @@ class CardTableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if let sections = fetchedResultsController.sections, sections.count > 0 {
+            return sections[section].numberOfObjects
+        } else {
+            return 0
+        }
     }
 
     /*
@@ -82,14 +112,91 @@ class CardTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let viewControllerB = segue.destination as? ShowCardViewController {
+//            viewControllerB.frontlable.text! = "hahahah"
+//            viewControllerB.backlable.text! = "hahahah"
+//        }
+//    }
+    
+    
 
+
+
+}
+// related to NSFetchedResultsControllerDelegate
+extension CardTableViewController {
+    
+    
+    public func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
+        switch type {
+        case .insert: tableView.insertSections([sectionIndex], with: .fade)
+        case .delete: tableView.deleteSections([sectionIndex], with: .fade)
+        default: break
+        }
+    }
+    
+    public func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        case .delete:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+        case .update:
+            tableView.reloadRows(at: [indexPath!], with: .fade)
+        case .move:
+            tableView.deleteRows(at: [indexPath!], with: .fade)
+            tableView.insertRows(at: [newIndexPath!], with: .fade)
+        }
+    }
+    
+    public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+}
+
+//table view stuff
+extension CardTableViewController {
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cardCell", for: indexPath) as? CardTableViewCell else {
+            fatalError("The dequeued cell is not an instance of CardTableViewCell.")
+        }
+        let card = fetchedResultsController.object(at: indexPath)
+        //get the card name
+        cell.cardlable.text = card.keyword!
+        return cell
+    }
+    
+    //customize the swipe for tableview cell
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let edit = UITableViewRowAction(style: .normal, title: "Edit") { action, index in
+            //self.isEditing = false
+            
+            print("edit button tapped")
+        }
+        
+        edit.backgroundColor = UIColor.blue
+        
+        let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
+            let currentcell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            Card.Delete(KeyWord: currentcell.cardlable.text!,context: context)
+            tableView.reloadData()
+            print("delete button tapped")
+        }
+        delete.backgroundColor = UIColor.red
+        
+        
+        return [ edit, delete]
+}
 }

@@ -47,7 +47,7 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideKeyboardOnTap(#selector(self.dismissKeyboard))
         // Do any additional setup after loading the view.
     }
 
@@ -55,7 +55,10 @@ class AddViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+        // do aditional stuff
+    }
 
     /*
     // MARK: - Navigation
