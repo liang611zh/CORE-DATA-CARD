@@ -20,7 +20,7 @@ class Category: NSManagedObject {
         fetchRequest.predicate = NSPredicate.init(format: "categoryName = %@", argumentArray: [CategoryName])
         let object = try! context.fetch(fetchRequest)
         if(object.count >= 1) {
-            print("duplicate")
+            print("duplicate data")
             return nil
         }
         
