@@ -10,13 +10,12 @@ import UIKit
 import CoreData
 class Card: NSManagedObject {
     //create func
-    class func CreateCard(KeyWord: String,CardFront: String,CardBack:String, in context: NSManagedObjectContext) -> Card?
-    {
-        
+    class func CreateCard(KeyWord: String,CardFront: String,CardBack:String,CardCategoryNew: AnyObject, in context: NSManagedObjectContext) -> Card?
+    {        
         //query to check if the db had the name already
         //if so, return nil
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
-        fetchRequest.predicate = NSPredicate.init(format: "keyword = %@", argumentArray: [KeyWord,CardFront,CardBack])
+        fetchRequest.predicate = NSPredicate.init(format: "keyword = %@", argumentArray: [KeyWord])
         let object = try! context.fetch(fetchRequest)
         if(object.count >= 1) {
             print("duplicate data")
@@ -24,13 +23,15 @@ class Card: NSManagedObject {
         }
         
         //1: to get a new object(new row in db)
-        let newCategory = Card(context: context)
+        let newCard = Card(context: context)
         
         //2:set the attributes
-        newCategory.keyword = KeyWord
-        newCategory.cardfront = CardFront
-        newCategory.cardback = CardBack
-        return newCategory
+        newCard.keyword = KeyWord
+        newCard.cardfront = CardFront
+        newCard.cardback = CardBack
+        newCard.category = CardCategoryNew as? Category
+        
+        return newCard
         
         //3: after call context.save();
     }

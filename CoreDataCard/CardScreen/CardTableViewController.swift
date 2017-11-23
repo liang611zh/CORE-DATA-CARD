@@ -15,6 +15,8 @@ class CardTableViewController: UITableViewController, NSFetchedResultsController
     //var for passing to show controller
     var cardbackinfo:String=""
     var cardfrontinfo:String=""
+    var CardCategory: AnyObject?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -25,12 +27,10 @@ class CardTableViewController: UITableViewController, NSFetchedResultsController
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         //create a request
         let request: NSFetchRequest<Card> = Card.fetchRequest()
-        
-        request.sortDescriptors = [NSSortDescriptor(
-            key: "keyword",
-            ascending: true
-            )]
-        
+        let cardSort = NSSortDescriptor(key: "keyword",ascending: true)
+        //let cateSort = NSSortDescriptor(key: "lastName", ascending: true)
+        request.sortDescriptors = [cardSort]
+        request.predicate = NSPredicate.init(format:"category == %@ ", argumentArray: [CardCategory])
         //set up the fetchedResultsController
         fetchedResultsController = NSFetchedResultsController<Card>(
             fetchRequest: request,
@@ -47,6 +47,8 @@ class CardTableViewController: UITableViewController, NSFetchedResultsController
             print(error)
         }
         tableView.reloadData()
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -119,17 +121,23 @@ class CardTableViewController: UITableViewController, NSFetchedResultsController
         let card = fetchedResultsController.object(at: indexPath as IndexPath)
         cardfrontinfo = card.cardfront!
         cardbackinfo = card.cardback!
-        print(cardfrontinfo)
+        print(card)
         self.performSegue(withIdentifier: "showSegue", sender: self)
     }
 
     // MARK: - Navigation
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if segue.identifier == "showSegue" {
+        if segue.identifier == "showSegue" {
             if let viewControllerB = segue.destination as? ShowCardViewController {
                 viewControllerB.fronttext = cardfrontinfo
                 viewControllerB.backtext = cardbackinfo
+            }
+        }
+        if segue.identifier == "addCardSegue" {
+            if let viewControllerC = segue.destination as? AddCardViewController {
+                viewControllerC.CardCategory = CardCategory
+                //print(CardCategory)
             }
         }
     }
@@ -179,6 +187,7 @@ extension CardTableViewController {
         let card = fetchedResultsController.object(at: indexPath)
         //get the card name
         cell.cardlable.text = card.keyword!
+        print(card)
         return cell
     }
     
