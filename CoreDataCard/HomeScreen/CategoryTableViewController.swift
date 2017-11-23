@@ -15,6 +15,8 @@ class CategoryTableViewController: UITableViewController, NSFetchedResultsContro
     
     var fetchedResultsController: NSFetchedResultsController<Category>!
     
+    //let passCategory = passCategory()
+    var PassCategory: AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,7 @@ class CategoryTableViewController: UITableViewController, NSFetchedResultsContro
 
 
 }
+
 // related to NSFetchedResultsControllerDelegate
 extension CategoryTableViewController {
     
@@ -103,6 +106,7 @@ extension CategoryTableViewController {
             fatalError("The dequeued cell is not an instance of CategoryTableViewCell.")
         }
         let category = fetchedResultsController.object(at: indexPath)
+        PassCategory = category
         //get the category name
         cell.label.text = category.categoryName!
         return cell

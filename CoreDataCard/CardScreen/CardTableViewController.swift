@@ -12,6 +12,9 @@ class CardTableViewController: UITableViewController, NSFetchedResultsController
     var context : NSManagedObjectContext! = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     var fetchedResultsController: NSFetchedResultsController<Card>!
+    //var for passing to show controller
+    var cardbackinfo:String=""
+    var cardfrontinfo:String=""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -111,22 +114,25 @@ class CardTableViewController: UITableViewController, NSFetchedResultsController
         return true
     }
     */
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("You selected cell number: \(indexPath.row)!")
+        let card = fetchedResultsController.object(at: indexPath as IndexPath)
+        cardfrontinfo = card.cardfront!
+        cardbackinfo = card.cardback!
+        print(cardfrontinfo)
+        self.performSegue(withIdentifier: "showSegue", sender: self)
+    }
 
-    
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if let viewControllerB = segue.destination as? ShowCardViewController {
-//            viewControllerB.frontlable.text! = "hahahah"
-//            viewControllerB.backlable.text! = "hahahah"
-//        }
-//    }
-    
-    
-
-
-
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "showSegue" {
+            if let viewControllerB = segue.destination as? ShowCardViewController {
+                viewControllerB.fronttext = cardfrontinfo
+                viewControllerB.backtext = cardbackinfo
+            }
+        }
+    }
 }
 // related to NSFetchedResultsControllerDelegate
 extension CardTableViewController {
@@ -176,6 +182,7 @@ extension CardTableViewController {
         return cell
     }
     
+    
     //customize the swipe for tableview cell
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
@@ -190,7 +197,7 @@ extension CardTableViewController {
         let delete = UITableViewRowAction(style: .normal, title: "Delete") { action, index in
             let currentcell = tableView.cellForRow(at: indexPath) as! CardTableViewCell
             let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            Card.Delete(KeyWord: currentcell.cardlable.text!,context: context)
+            Card.Delete(KeyWord: currentcell.cardlable.text! ,context: context)
             tableView.reloadData()
             print("delete button tapped")
         }

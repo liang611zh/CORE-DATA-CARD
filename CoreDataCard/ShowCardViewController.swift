@@ -14,11 +14,14 @@ class ShowCardViewController: UIViewController {
     
     var fetchedResultsController: NSFetchedResultsController<Card>!
     
+    var backtext:String=""
+    var fronttext:String=""
     @IBOutlet weak var backview: UIView!
     @IBOutlet weak var frontlable: UILabel!
     @IBOutlet weak var frontview: UIView!
     var flipflag = false
     @IBOutlet weak var backlable: UILabel!
+    
     
     @IBAction func flipback(_ sender: UIButton) {
         flipflag = !flipflag
@@ -37,7 +40,8 @@ class ShowCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        frontlable.text = fronttext
+        backlable.text = backtext
         // Do any additional setup after loading the view.
     }
 
