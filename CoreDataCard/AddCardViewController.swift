@@ -11,7 +11,7 @@ import CoreData
 class AddCardViewController: UIViewController {
     
     var context: NSManagedObjectContext! = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+    var CardCategory: AnyObject?
     
     @IBOutlet weak var keywordlable: UITextField!
     @IBOutlet weak var cardbacklable: UITextField!
@@ -21,16 +21,14 @@ class AddCardViewController: UIViewController {
         let keywordinput = keywordlable.text
         let cardbackinput = cardbacklable.text
         let cardfrontinput = cardfrontlable.text
-        
-        
-        
+        let cardobject = CardCategory
         //check if the text field is empty
         if (keywordinput?.count != 0 && cardbackinput?.count != 0 && cardfrontinput?.count != 0 ) {
             
             //check if db already had the same name(duplicate)
             //call db create func
             
-            if Card.CreateCard(KeyWord: keywordinput!, CardFront: cardfrontinput!, CardBack: cardbackinput!, in: context) != nil {
+            if Card.CreateCard(KeyWord: keywordinput!, CardFront: cardfrontinput!, CardBack: cardbackinput!, CardCategoryNew: cardobject! ,in: context) != nil {
                 do {
                     //remember to save
                     try context.save()

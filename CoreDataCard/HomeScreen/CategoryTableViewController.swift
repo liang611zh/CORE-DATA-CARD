@@ -15,6 +15,8 @@ class CategoryTableViewController: UITableViewController, NSFetchedResultsContro
     
     var fetchedResultsController: NSFetchedResultsController<Category>!
     
+    //let passCategory = passCategory()
+    var PassCategory: AnyObject?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,10 +58,28 @@ class CategoryTableViewController: UITableViewController, NSFetchedResultsContro
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        NSLog("You selected cell number: \(indexPath.row)!")
+        let category = fetchedResultsController.object(at: indexPath as IndexPath)
+        PassCategory = category
+        print(PassCategory as! Category)
+        self.performSegue(withIdentifier: "showCards", sender: self)
+    }
+    
+    // MARK: - Navigation
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCards" {
+            if let viewControllerA = segue.destination as? CardTableViewController {
+                viewControllerA.CardCategory = PassCategory
+                
+            }
+        }
+    }
 
 
 }
+
 // related to NSFetchedResultsControllerDelegate
 extension CategoryTableViewController {
     
@@ -103,6 +123,7 @@ extension CategoryTableViewController {
             fatalError("The dequeued cell is not an instance of CategoryTableViewCell.")
         }
         let category = fetchedResultsController.object(at: indexPath)
+        PassCategory = category
         //get the category name
         cell.label.text = category.categoryName!
         return cell
